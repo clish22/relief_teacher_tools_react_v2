@@ -18,10 +18,10 @@ export class User extends Component {
   };
 
   render() {
-    const { _id, name, randColor, randNum } = this.props;
+    const { _id, name, randColor, randNum } = this.props.user;
 
     return (
-      <>
+      <tr>
         <th scope="row">{_id}</th>
         <td>{name}</td>
         <td>{randNum}</td>
@@ -41,7 +41,17 @@ export class User extends Component {
             +
           </button>
         </td>
-      </>
+        <td>
+          <button
+            onClick={() => {
+              this.props.onDelete(_id);
+            }}
+            className="btn btn-danger btn-sm m-2"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
     );
   }
 }

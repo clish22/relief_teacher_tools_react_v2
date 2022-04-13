@@ -11,6 +11,11 @@ export class UsersTable extends Component {
     };
   }
 
+  handleDelete = (userID) => {
+    const users = this.state.users.filter((user) => user._id !== userID);
+    this.setState({ users });
+  };
+
   render() {
     return (
       <>
@@ -22,18 +27,12 @@ export class UsersTable extends Component {
               <th scope="col">Favourite Number</th>
               <th scope="col">Favourite Colour</th>
               <th scope="col">Score</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
             {this.state.users.map((user) => (
-              <tr key={user._id}>
-                <User
-                  _id={user._id}
-                  name={user.name}
-                  randColor={user.randColor}
-                  randNum={user.randNum}
-                />
-              </tr>
+              <User key={user._id} user={user} onDelete={this.handleDelete} />
             ))}
           </tbody>
         </table>
